@@ -12,3 +12,8 @@ local.properties
 test/local.properties
 test/project.properties
 test/*.iml
+*.gradle
+/app/build/
+.gradle/
+build/*
+*.txt
