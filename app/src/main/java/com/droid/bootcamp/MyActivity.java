@@ -5,8 +5,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 
 public class MyActivity extends Activity {
+
+  private static final int REQUEST_CODE_FOR_SUBTRACTION = 1;
 
   @Override
   public void onCreate(Bundle savedInstanceState) {
@@ -20,6 +23,15 @@ public class MyActivity extends Activity {
     int result = firstNumber + secondNumber;
     Intent intent = new Intent(this, ResultActivity.class);
     intent.putExtra(AppConstants.ADDITION_RESULT, result);
-    startActivity(intent);
+    startActivityForResult(intent, REQUEST_CODE_FOR_SUBTRACTION);
+  }
+
+  @Override
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+    if(resultCode == RESULT_OK){
+      int result = data.getIntExtra(AppConstants.SUBTRACTION_RESULT, 0);
+      ((TextView)findViewById(R.id.result)).setText(String.valueOf(result));
+    }
+    super.onActivityResult(requestCode, resultCode, data);
   }
 }
