@@ -1,12 +1,13 @@
 package com.droid.bootcamp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
-import android.widget.TextView;
 
 public class MyActivity extends Activity {
+
   @Override
   public void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -17,7 +18,8 @@ public class MyActivity extends Activity {
     int firstNumber = Integer.parseInt(((EditText) findViewById(R.id.number_input_one)).getText().toString());
     int secondNumber = Integer.parseInt(((EditText) findViewById(R.id.number_input_two)).getText().toString());
     int result = firstNumber + secondNumber;
-    TextView resultView = (TextView) findViewById(R.id.result);
-    resultView.setText(String.valueOf(result));
+    Intent intent = new Intent(this, ResultActivity.class);
+    intent.putExtra(AppConstants.ADDITION_RESULT, result);
+    startActivity(intent);
   }
 }
